@@ -1,40 +1,19 @@
 #include <iostream>
-#include <string>
-
-bool isBouncy(int n)
-{
-  bool increasing = true, decreasing = true;
-  std::string digits = std::to_string(n);
-  char lastDigit = digits.front();
-  for(auto digit : digits)
-  {
-    if(digit < lastDigit)
-      increasing = false;
-    else if(digit > lastDigit)
-      decreasing = false;
-
-    if(!increasing && !decreasing)
-      return true;
-
-    lastDigit = digit;
-  }
-  return false;
-}
 
 int main(int argc, char* argv[])
 {
-  int nBouncy = 0;
-  for(int i = 1; ; ++i)
-  {
-    if(isBouncy(i))
-      nBouncy++;
+    // 2^7830457
+    unsigned long int power = 1;
+    for(int i = 0; i < 7830457; ++i)
+        power = (power * 2) % 10000000000;
 
-    if(nBouncy * 100 / i == 99)
-    {
-      std::cout << i << std::endl;
-      break;
-    }
-  }
+    // 28433 * 2^7830457
+    unsigned long int product = 0;
+    for(int i = 0; i < 28433; ++i)
+        product = (product + power) % 10000000000;
 
-  return 0;
+    // 28433 * 2^7830457 + 1
+    unsigned long int result = product + 1;
+    std::cout << result << std::endl;
+    return 0;
 }
