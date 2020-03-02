@@ -8,17 +8,17 @@ using Line2Result = std::unordered_map<unsigned int, double>;
 
 Line2Result loadFile()
 {
-  Line2Result lines;
-  std::ifstream file("base_exp.txt");
-  for(unsigned int i = 1; i <= 1000; i++)
-  {
-    int base, exponent;
-    char comma;
-    file >> base >> comma >> exponent;
-    double result = exponent * std::log10(base);
-    lines[i] = result;
-  }
-  return lines;
+    Line2Result lines;
+    std::ifstream file("base_exp.txt");
+    for(unsigned int i = 1; i <= 1000; i++)
+    {
+        int base, exponent;
+        char comma;
+        file >> base >> comma >> exponent;
+        double result = exponent * std::log10(base);
+        lines[i] = result;
+    }
+    return lines;
 }
 
 int main(int argc, char* argv[])
