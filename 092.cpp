@@ -2,21 +2,21 @@
 #include <functional>
 #include <iostream>
 #include <iterator>
-#include <list>
 #include <numeric>
 #include <string>
+#include <vector>
 
 unsigned int add_square_digits(unsigned int n)
 {
     std::string s = std::to_string(n);
-    std::list<unsigned int> l;
-    std::transform(s.begin(), s.end(), std::back_inserter(l),
+    std::vector<unsigned int> v(s.size());
+    std::transform(s.begin(), s.end(), v.begin(),
                    [](std::string::value_type c) -> unsigned int
                    { return c - '0'; });
-    std::transform(l.begin(), l.end(), l.begin(),
+    std::transform(v.begin(), v.end(), v.begin(),
                    [](unsigned int x) -> unsigned int
                    { return x * x; });
-    return std::accumulate(l.begin(), l.end(), 0u);
+    return std::accumulate(v.begin(), v.end(), 0u);
 }
 
 int main(int argc, char* argv[])
